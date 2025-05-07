@@ -1,12 +1,12 @@
 # Use Alpine as the base image
 FROM alpine:3.18
 
-# Set environment variables for Java and Maven versions
-ENV JAVA_VERSION 17.0.8
-ENV MAVEN_VERSION 3.9.5
-ENV JAVA_HOME /usr/lib/jvm/java-17-openjdk
-ENV MAVEN_HOME /opt/maven
-ENV PATH $MAVEN_HOME/bin:$PATH
+# Set environment variables (key=value format)
+ENV JAVA_VERSION=17.0.8 \
+    MAVEN_VERSION=3.9.5 \
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
+    MAVEN_HOME=/opt/maven \
+    PATH=$MAVEN_HOME/bin:$PATH
 
 # Create a group and user for running the application
 RUN addgroup -g 1000 maven \
@@ -19,7 +19,6 @@ RUN addgroup -g 1000 maven \
         tar \
         git \
     && apk add --no-cache --virtual .build-deps \
-        curl \
         gnupg \
     # Install Maven
     && curl -fsSL "https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz" -o /tmp/apache-maven.tar.gz \
@@ -32,21 +31,18 @@ RUN addgroup -g 1000 maven \
     && apk del .build-deps \
     && rm -rf /var/cache/apk/*
 
+# Copy the entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Set user permissions
 USER maven
 
 # Smoke tests to verify installations
 RUN java -version && mvn -version
 
-# Copy the entrypoint script
-COPY docker-entrypoint.sh /usr/local/bin/
-
-# Permission for the docker-entrypoint.sh
-
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 # Set the entry point for the container
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-# Default command to run if none is specified
+# Default command
 CMD ["mvn", "--version"]
