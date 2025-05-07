@@ -2,7 +2,8 @@ name: Build and Push to Quay.io
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -10,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Code Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Login to Quay.io
         run: echo "${{ secrets.QUAY_PASSWORD }}" | docker login quay.io -u "${{ secrets.QUAY_USERNAME }}" --password-stdin
 
-      - name: Docker Image Build
+      - name: Build Docker Image
         run: docker build -t quay.io/nitinpallelwar/myrepo:latest .
 
-      - name: Docker Image Push
+      - name: Push Docker Image to Quay.io
         run: docker push quay.io/nitinpallelwar/myrepo:latest
