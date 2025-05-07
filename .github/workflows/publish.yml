@@ -1,4 +1,4 @@
-name: Hello World
+name: Build and Push to Quay.io
 
 on:
   push:
@@ -6,9 +6,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  say-hello:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print Hello World
-        run: echo "Hello, World!"
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Login to Quay.io
+        run: echo "${{ secrets.QUAY_PASSWORD }}" | docker login quay.io -u "${{ secrets.QUAY_USERNAME }}" --password-stdin
+
+      - name: Docker Image Build
+        run: docker build -t quay.io/nitinpallelwar/myrepo:latest .
+
+      - name: Docker Image Push
+        run: docker push quay.io/nitinpallelwar/myrepo:latest
