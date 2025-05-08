@@ -1,12 +1,12 @@
 # Use Alpine as the base image
 FROM alpine:3.18
 
-# Set environment variables for Java and Maven versions
+# Set environment variables for Java and Maven versions (define all at once)
 ENV JAVA_VERSION=17.0.8 \
     MAVEN_VERSION=3.9.5 \
     JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
     MAVEN_HOME=/opt/maven \
-    PATH=$MAVEN_HOME/bin:$PATH
+    PATH=/opt/maven/bin:$PATH
 
 # Create a group and user for running the application
 RUN addgroup -g 1000 maven \
