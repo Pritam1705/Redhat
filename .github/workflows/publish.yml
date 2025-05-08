@@ -18,7 +18,7 @@ jobs:
         run: echo "${{ secrets.QUAY_PASSWORD }}" | docker login quay.io -u "${{ secrets.QUAY_USERNAME }}" --password-stdin
 
       - name: Build Docker Image
-        run: docker build -t quay.io/${{ secrets.QUAY_USERNAME }}/myrepo:latest .
+        run: docker build -t quay.io/${{ secrets.QUAY_USERNAME }}/mavenjdk:latest .
 
       - name: Push Docker Image to Quay.io
-        run: docker push quay.io/${{ secrets.QUAY_USERNAME }}/myrepo:latest
+        run: docker push quay.io/${{ secrets.QUAY_USERNAME }}/mavenjdk:latest
