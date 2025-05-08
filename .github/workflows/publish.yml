@@ -8,17 +8,17 @@ on:
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest #GitHub Actions tumhare workflows ko execute karne ke liye latest version of Ubuntu ka VM use karta hai.
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Login to Quay.io
-        run: echo "Pritam@#845980" | docker login quay.io -u "nitinpallelwar" --password-stdin #Iska matlab hai ki tum password ko stdin (standard input) ke through pass kar rahe ho, instead of directly command line me likhne ke.
-        
+        run: echo "${{ secrets.QUAY_PASSWORD }}" | docker login quay.io -u "${{ secrets.QUAY_USERNAME }}" --password-stdin
+
       - name: Build Docker Image
-        run: docker build -t quay.io/nitinpallelwar/myrepo:latest .
+        run: docker build -t quay.io/${{ secrets.QUAY_USERNAME }}/myrepo:latest .
 
       - name: Push Docker Image to Quay.io
-        run: docker push quay.io/nitinpallelwar/myrepo:latest
+        run: docker push quay.io/${{ secrets.QUAY_USERNAME }}/myrepo:latest
