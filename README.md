@@ -415,7 +415,8 @@ Open ports and install Docker on Observation K8 Cluster node VM’s.
     kubectl get nodes
     ```
     Command will result in details of the nodes of the Observation cluster, showing their status (e.g., `Ready`).
-  ![alt text](image-1.png)
+<img width="602" height="63" alt="Screenshot from 2025-11-12 20-24-18" src="https://github.com/user-attachments/assets/722978b2-1049-4b48-9979-b79d74fa6138" />
+
 
 ## 2.5. Save Important Files
 
@@ -697,7 +698,8 @@ The Nginx server acts as a reverse proxy for the cluster, handling TLS terminati
         ```bash
         kubectl get nodes
         ```
-        ![alt text](image-2.png)
+        <img width="931" height="171" alt="Screenshot from 2025-11-12 21-05-55" src="https://github.com/user-attachments/assets/7a59f818-51e7-4121-8579-e97767617ae3" />
+
 5.  **Save Files:** Securely back up `cluster.yml`, `kube_config_cluster.yml`, and `cluster.rkestate`.
 
 ---
@@ -909,7 +911,8 @@ PostgreSQL is required as the primary relational database for the MOSIP services
 
 - Change image of postgres i.e,
 ( **helm -n $NS install postgres-postgresql bitnami/postgresql --version 12.11.1 -f values.yaml --set image.repository=mosipint/postgresql --set  image.tag="16.0.0-debian-11-r13-amd64-linux" --wait**  ) in **install.sh**
-![alt text](image-3.png)
+<img width="1300" height="675" alt="postgres" src="https://github.com/user-attachments/assets/198e0713-e6c0-45de-9f7a-a70033511630" />
+
 
 3.  **Execute the installation script:**
     ```bash
@@ -1056,7 +1059,8 @@ cd $INFRA_ROOT/deployment/v3/mosip/artifactory
 #### 4. Keymanager
 **Navigate to the installation directory &Execute the installation script:**
 - Add ( --set metrics.enabled=false ) in keymanager mosip/keymanager helm chart because we did not install monitoring components 
-![alt text](<Screenshot from 2025-10-24 13-23-32.png>)
+<img width="1284" height="104" alt="Screenshot from 2025-10-24 13-23-32" src="https://github.com/user-attachments/assets/6a3d7ba5-9831-4f78-af30-a34a37364c6b" />
+
 ```
 cd $INFRA_ROOT/deployment/v3/mosip/keymanager
 ./install.sh
@@ -1077,7 +1081,8 @@ cd $INFRA_ROOT/deployment/v3/mosip/mock-smtp
 #### 7. Kernel
 **Navigate to the installation directory &Execute the installation script:**
 - Add ( --set metrics.enabled=false ) in keymanager mosip/keymanager helm chart because we did not install monitoring components 
-![alt text](<Screenshot from 2025-10-24 13-26-38.png>)
+<img width="1181" height="505" alt="kernel" src="https://github.com/user-attachments/assets/177be121-5ca8-474e-b0e3-6f7d4ee10e8a" />
+
 ```
 cd $INFRA_ROOT/deployment/v3/mosip/kernel
 ./install.sh
@@ -1100,7 +1105,8 @@ cd $INFRA_ROOT/deployment/v3/mosip/kernel
 #### 10. Packetmanager
 **Navigate to the installation directory &Execute the installation script:**
 - Add ( --set metrics.enabled=false ) in install.sh 
-![alt text](<Screenshot from 2025-10-24 13-31-39.png>)
+<img width="1010" height="192" alt="packet-manger" src="https://github.com/user-attachments/assets/d654ec66-fd29-4ef3-818d-10d56477662f" />
+
 
 ```
 cd $INFRA_ROOT/deployment/v3/mosip/packetmanager
@@ -1116,7 +1122,8 @@ cd $INFRA_ROOT/deployment/v3/mosip/packetmanager
 #### 12. Pre-reg
 **Navigate to the installation directory &Execute the installation script:**
 - Add ( --set metrics.enabled=false ) in install.sh 
-![alt text](<Screenshot from 2025-10-24 13-33-53.png>)
+<img width="1265" height="427" alt="prereg" src="https://github.com/user-attachments/assets/e1d929a1-eed6-4fcc-8405-0b30259751ae" />
+
 
 ```
 cd $INFRA_ROOT/deployment/v3/mosip/prereg
@@ -1127,7 +1134,8 @@ cd $INFRA_ROOT/deployment/v3/mosip/prereg
 **Navigate to the installation directory &Execute the installation script:**
 - Add ( --set metrics.enabled=false ) in install.sh 
 
-![alt text](<Screenshot from 2025-10-24 13-35-46.png>)
+<img width="1265" height="427" alt="idrepo" src="https://github.com/user-attachments/assets/473ef9c2-c5d9-4491-9f1d-9c7d6ab7e54e" />
+
 ```
 cd $INFRA_ROOT/deployment/v3/mosip/idrepo
 ./install.sh
@@ -1144,7 +1152,8 @@ cd $INFRA_ROOT/deployment/v3/mosip/idrepo
 **Navigate to the installation directory &Execute the installation script:**
 - Add ( --set metrics.enabled=false ) in install.sh 
 
-![alt text](<Screenshot from 2025-10-24 13-38-22.png>)
+<img width="1265" height="427" alt="mockabis" src="https://github.com/user-attachments/assets/184da136-3bb4-412a-a828-dfb59f7e5073" />
+
 ```
 cd $INFRA_ROOT/deployment/v3/mosip/mock-abis
 ./install.sh
@@ -1160,8 +1169,8 @@ cd $INFRA_ROOT/deployment/v3/mosip/mock-abis
 #### 17. Registration Processor
 **Navigate to the installation directory &Execute the installation script:**
 - Add ( --set metrics.enabled=false ) in install.sh 
+<img width="605" height="305" alt="image" src="https://github.com/user-attachments/assets/5503df37-ed3c-40e7-ad92-983b0d8f5368" />
 
-![alt text](image-6.png)
 ```
 cd $INFRA_ROOT/deployment/v3/mosip/regproc
 ./install.sh
@@ -1172,7 +1181,8 @@ kubectl edit deploy regproc-trans -n regproc change image name and tag  for land
  
 - Use this image tag : 
 image: **docker.io/mosipid/registration-processor-registration-transaction-service:1.2.0.1**
-![alt text](<Screenshot from 2025-10-24 13-45-15.png>)
+<img width="1273" height="640" alt="Screenshot from 2025-10-24 13-45-15" src="https://github.com/user-attachments/assets/44641019-238c-4684-8a88-f4fc5f14a9fa" />
+
 
 
 #### 18. Admin
