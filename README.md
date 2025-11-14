@@ -80,7 +80,8 @@
 
 ## 1) Architecture of Mosip deployment
 
-![alt text](image.png)
+<img width="914" height="535" alt="mosip-arch" src="https://github.com/user-attachments/assets/be376b92-ca55-4912-a682-0e40e433be93" />
+
 
 
 ## 2) Difference in MOSIP Documentation vs Ooru Runbook for k8s cluster
