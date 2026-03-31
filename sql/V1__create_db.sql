@@ -1,0 +1,1 @@
+CREATE DATABASE credissuer_payment_db;
